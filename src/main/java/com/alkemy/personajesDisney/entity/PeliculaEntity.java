@@ -1,0 +1,41 @@
+package com.alkemy.personajesDisney.entity;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "pelicula")
+public class PeliculaEntity {
+    @Id
+    @Column(name = "idPelicula", nullable = false)
+    private Long id;
+    private String imagen;
+    private String titulo;
+
+    @Column(name = "fecha_creacion")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    private LocalDate fechaCreacion;
+    private Integer calificacion;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "genero_id")
+    private GeneroEntity genero;
+
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(
+            name = "pelicula_personaje",
+            joinColumns = @JoinColumn(name = "pelicula_id"),
+            inverseJoinColumns = @JoinColumn(name = "personaje_id"))
+    private List<PersonajeEntity> personajes = new ArrayList<>();
+
+}
