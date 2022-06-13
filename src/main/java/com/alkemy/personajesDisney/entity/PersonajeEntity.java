@@ -24,6 +24,14 @@ public class PersonajeEntity {
     private double peso;
     private String historia;
 
+    @ManyToMany(mappedBy = "personajes",cascade = CascadeType.PERSIST)
+    private List<PeliculaEntity> peliculas = new ArrayList<>();
 
+    public void addPelicula(PeliculaEntity pelicula) {
+        this.peliculas.add(pelicula);
+    }
 
+    public void removePelicula(PeliculaEntity pelicula) {
+        this.peliculas.remove(pelicula);
+    }
 }
