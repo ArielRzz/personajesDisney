@@ -22,9 +22,10 @@ public class PeliculaEntity {
     @Column(name = "fecha_creacion")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate fechaCreacion;
+
     private Integer calificacion;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     @JoinColumn(name = "genero_id")
     private GeneroEntity genero;
 
