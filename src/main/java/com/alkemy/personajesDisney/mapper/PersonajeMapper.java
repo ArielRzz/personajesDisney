@@ -4,6 +4,9 @@ import com.alkemy.personajesDisney.dto.PersonajeDTO;
 import com.alkemy.personajesDisney.entity.PersonajeEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class PersonajeMapper {
 
@@ -27,4 +30,11 @@ public class PersonajeMapper {
         return dto;
     }
 
+    public List<PersonajeDTO> personajeEntity2DTOList(List<PersonajeEntity> personajeList) {
+    List<PersonajeDTO> dtos = new ArrayList<>();
+        for (PersonajeEntity entity:personajeList) {
+            dtos.add(personajeEntity2DTO(entity));
+        }
+        return dtos;
+    }
 }
