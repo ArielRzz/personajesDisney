@@ -27,4 +27,10 @@ public class PersonajeController {
         List<PersonajeDTO> todosLosPersonajes = personajeService.getAllPersonajes();
         return ResponseEntity.ok().body(todosLosPersonajes);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        personajeService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
