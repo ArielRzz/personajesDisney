@@ -8,6 +8,8 @@ import com.alkemy.personajesDisney.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonajeServiceImpl implements PersonajeService {
 
@@ -25,5 +27,17 @@ public class PersonajeServiceImpl implements PersonajeService {
         PersonajeDTO result = personajeMapper.personajeEntity2DTO(entidadGuardada);
         System.out.println("Guardar Continente");
         return result;
+    }
+
+    @Override
+    public List<PersonajeDTO> getAllPersonajes() {
+        List<PersonajeEntity> listaPersonajes = personajeRepository.findAll();
+        List<PersonajeDTO> resultList = personajeMapper.personajeEntity2DTOList(listaPersonajes);
+        return  resultList;
+    }
+
+    @Override
+    public void delete(Long id) {
+            personajeRepository.deleteById(id);
     }
 }
