@@ -33,4 +33,18 @@ public class PersonajeController {
         personajeService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping("/{id}")
+    public PersonajeDTO getPersonaje(@PathVariable Long id){
+        PersonajeDTO personajeTraido = personajeService.get(id);
+        return personajeTraido;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonajeDTO> actualizarPersonaje(
+                            @PathVariable Long id,
+                            @RequestBody PersonajeDTO personajeActualizar){
+        PersonajeDTO personajeActualizado = personajeService.update(id,personajeActualizar);
+        return ResponseEntity.status(HttpStatus.CREATED).body(personajeActualizado) ;
+    }
 }
