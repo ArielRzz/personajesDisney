@@ -1,4 +1,5 @@
 package com.alkemy.personajesDisney.entity;
+import com.sun.istack.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class PeliculaEntity {
     @Column(name = "idPelicula", nullable = false)
     private Long id;
     private String imagen;
+    @NotNull
     private String titulo;
 
     @Column(name = "fecha_creacion")

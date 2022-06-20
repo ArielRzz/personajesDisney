@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,5 +21,5 @@ public class PeliculaDTO {
     private LocalDate fechaCreacion;
     private Integer calificacion;
     private GeneroEntity genero;
-    private List<PersonajeDTO> personajes = new ArrayList<>();
+    private Set<PersonajeDTO> personajes = new HashSet<>();
 }
