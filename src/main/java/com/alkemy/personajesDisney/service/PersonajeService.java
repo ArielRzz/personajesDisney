@@ -10,4 +10,8 @@ public interface PersonajeService {
     List<PersonajeDTO> getAllPersonajes();
 
     void delete(Long id);
+
+    PersonajeDTO get(Long id);
+
+    PersonajeDTO update(Long id, PersonajeDTO personajeActualizar);
 }

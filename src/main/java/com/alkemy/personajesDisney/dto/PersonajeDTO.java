@@ -19,5 +19,5 @@ public class PersonajeDTO {
     private double peso;
     private String historia;
 
-    private List<PeliculaEntity> peliculas = new ArrayList<>();
+    private List<PeliculaDTO> peliculas = new ArrayList<>();
 }
