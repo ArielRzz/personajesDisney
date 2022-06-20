@@ -34,7 +34,7 @@ public class PersonajeServiceImpl implements PersonajeService {
     @Override
     public List<PersonajeDTO> getAllPersonajes() {
         List<PersonajeEntity> listaPersonajes = personajeRepository.findAll();
-        List<PersonajeDTO> resultList = personajeMapper.personajeEntity2DTOList(listaPersonajes,false);
+        List<PersonajeDTO> resultList = (List<PersonajeDTO>) personajeMapper.personajeEntity2DTOList(listaPersonajes,false);
         return  resultList;
     }
 

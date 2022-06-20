@@ -25,7 +25,6 @@ public class PersonajeMapper {
 
     public PersonajeDTO personajeEntity2DTO(PersonajeEntity entity,boolean loadPeliculas){
         PersonajeDTO dto = new PersonajeDTO();
-
         dto.setId(entity.getId());
         dto.setEdad(entity.getEdad());
         dto.setNombre(entity.getNombre());
@@ -37,8 +36,8 @@ public class PersonajeMapper {
         return dto;
     }
 
-    public List<PersonajeDTO> personajeEntity2DTOList(Collection<PersonajeEntity> personajeList, boolean loadPeliculas) {
-    List<PersonajeDTO> dtos = new ArrayList<>();
+    public Set<PersonajeDTO> personajeEntity2DTOList(Collection<PersonajeEntity> personajeList, boolean loadPeliculas) {
+    Set<PersonajeDTO> dtos = new HashSet<>();
         for (PersonajeEntity entity:personajeList) {
             dtos.add(personajeEntity2DTO(entity,loadPeliculas));
         }
