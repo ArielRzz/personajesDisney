@@ -1,6 +1,5 @@
 package com.alkemy.personajesDisney.entity;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GeneratorType;
@@ -8,6 +7,8 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class PersonajeEntity {
     @Column
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @NotNull
     private String nombre;
+    private String imagen;
     private Integer edad;
-    private double peso;
+    private Double peso;
     private String historia;
 
     private boolean deleted = Boolean.FALSE;
@@ -41,4 +42,5 @@ public class PersonajeEntity {
     public void removePelicula(PeliculaEntity pelicula) {
         this.peliculas.remove(pelicula);
     }
+
 }
