@@ -1,5 +1,6 @@
 package com.alkemy.personajesDisney.mapper;
 
+import com.alkemy.personajesDisney.dto.PeliculaBasicDTO;
 import com.alkemy.personajesDisney.dto.PeliculaDTO;
 import com.alkemy.personajesDisney.dto.PersonajeDTO;
 import com.alkemy.personajesDisney.entity.GeneroEntity;
@@ -39,12 +40,27 @@ public class PeliculaMapper {
         peliculaDTO.setTitulo(entity.getTitulo());
         peliculaDTO.setFechaCreacion(entity.getFechaCreacion());
         peliculaDTO.setCalificacion(entity.getCalificacion());
-        peliculaDTO.setGenero(entity.getGenero());
+        peliculaDTO.setGenero_id(entity.getGenero().getId());
         if (loadPersonajes){
-            Set<PersonajeDTO> personajesDTO = this.personajeMapper.personajeEntity2DTOList(entity.getPersonajes(),false);
+            Set<PersonajeDTO> personajesDTO = this.personajeMapper.personajeEntitySet2SetDTO(entity.getPersonajes(),false);
             peliculaDTO.setPersonajes(personajesDTO);
         }
         return peliculaDTO;
+    }
+    public PeliculaBasicDTO peliculaBasicEntity2DTO(PeliculaEntity entity){
+        PeliculaBasicDTO peliculaBasicDTO = new PeliculaBasicDTO();
+        peliculaBasicDTO.setId(entity.getId());
+        peliculaBasicDTO.setTitulo(entity.getTitulo());
+        peliculaBasicDTO.setGenero_id(entity.getGenero().getId());
+        return peliculaBasicDTO;
+    }
+
+    public List<PeliculaBasicDTO> peliculaBasicEntityList2DTOList(Collection<PeliculaEntity> peliculas) {
+        List<PeliculaBasicDTO> peliculaBasicDTOS = new ArrayList<>();
+        for (PeliculaEntity entity: peliculas) {
+            peliculaBasicDTOS.add(peliculaBasicEntity2DTO(entity));
+        }
+        return peliculaBasicDTOS;
     }
 
     public List<PeliculaDTO> peliculaEntityList2DTOList(Collection<PeliculaEntity> peliculas, boolean loadPersonajes) {

@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -41,5 +42,18 @@ public class PeliculaEntity {
             joinColumns = @JoinColumn(name = "pelicula_id"),
             inverseJoinColumns = @JoinColumn(name = "personaje_id"))
     private Set<PersonajeEntity> personajes = new HashSet<>();
-    
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PeliculaEntity that = (PeliculaEntity) o;
+        return Objects.equals(imagen, that.imagen) && Objects.equals(titulo, that.titulo) && Objects.equals(fechaCreacion, that.fechaCreacion) && Objects.equals(personajes, that.personajes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(imagen, titulo, fechaCreacion, personajes);
+    }
 }
